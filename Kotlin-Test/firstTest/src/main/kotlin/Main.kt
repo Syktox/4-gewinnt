@@ -1,44 +1,40 @@
-fun main() {
-    var done: Boolean = false
-    val player1: Char = '?'
-    val player2: Char = '#'
-    var count: Int = 0
+var done: Boolean = false
+val pg = Playground()
 
-    val pg = Playground()
+fun playerDropsPiece(player: Char) {
+    println("\nWo willst du deinen Spielstein hinwerfen?")
+
+    var input = readLine()?.toInt()
+    while (input == null || input > 6 || input < 0 || !pg.dropPiece(input, player)) {
+        println("\n\nWrong Input! Try again!")
+        input = readLine()?.toInt()
+    }
+
     pg.show()
 
-    while (done == false) {
+    if (pg.gameIsOver()) {
+        println("\n\nDer Spieler $player hat GEWONNEN! Gratulation!\n\n")
+        done = true
+    }
+}
+fun initalisePlayer(): Char {
+    println("Gib ein Zeichen für deinen Spieler ein!")
+    val player = readLine()?.length==1
+    return player.toString()[0]
+}
+
+fun main() {
+    val p1 = initalisePlayer()
+    val p2 = initalisePlayer()
+
+    var count = 0
+
+    pg.show()
+    while (!done) {
         if (count % 2 == 0) {
-
-            println("\nWo willst du deinen Spielstein hinwerfen?")
-
-            val input = readLine()?.toInt()
-
-            if (input != null) {
-                pg.dropPiece(input, player1)
-            }
-            if (pg.gameIsOver()) {
-                println("\n\nDer Spieler 1 hat GEWONNEN! Gratulation!\n\n")
-                done = true
-            }
-            pg.show()
-
+            playerDropsPiece(p1)
         } else {
-
-            println("\nWo willst du deinen Spielstein hinwerfen?")
-
-            val input = readLine()?.toInt()
-
-            if (input != null) {
-                pg.dropPiece(input, player2)
-            }
-            pg.show()
-
-            if (pg.gameIsOver()) {
-                println("\n\nDer Spieler 2 hat GEWONNEN! Gratulation!\n\n")
-                done = true
-            }
-
+            playerDropsPiece(p2)
         }
         count++
     }

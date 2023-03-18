@@ -10,12 +10,16 @@ class Playground {
         }
     }
 
-    fun dropPiece(spalte: Int, player: Char) {
+    fun dropPiece(spalte: Int, player: Char): Boolean {
         var tempheight = 5
         while (matrix[tempheight][spalte] != '0') {
+            if (tempheight == 0) {
+                return false
+            }
             tempheight--
         }
         matrix[tempheight][spalte] = player
+        return true
     }
 
     fun hasFourSameDigitsBehindEachOther(): Boolean {
@@ -79,4 +83,6 @@ class Playground {
         }
         return false
     }
+
+
 }
