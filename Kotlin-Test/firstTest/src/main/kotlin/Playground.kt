@@ -26,7 +26,7 @@ class Playground {
         for (row in matrix) {
             var count: Int = 1
             for (i in 1 until row.size) {
-                if (row[i] == row[i - 1] && (row[i] == '?' || row[i]  == '#')) {
+                if (row[i] == row[i - 1] && row[i] != '0') {
                     count++
                     if (count == 4) {
                         return true
@@ -40,7 +40,7 @@ class Playground {
         for (i in 0 until matrix[0].size) {
             var count = 1
             for (j in 1 until matrix.size) {
-                if (matrix[j][i] == matrix[j - 1][i] && (matrix[j][i] == '?' || matrix[j][i]  == '#')) {
+                if (matrix[j][i] == matrix[j - 1][i] && matrix[j][i] != '0') {
                     count++
                     if (count == 4) {
                         return true
@@ -56,7 +56,7 @@ class Playground {
                 if (matrix[i][j] == matrix[i + 1][j + 1] &&
                     matrix[i + 1][j + 1] == matrix[i + 2][j + 2] &&
                     matrix[i + 2][j + 2] == matrix[i + 3][j + 3] &&
-                    (matrix[i][j] == '?'|| matrix[i][j] == '#')) {
+                    matrix[i][j] != '0') {
                     return true
                 }
             }
@@ -68,7 +68,7 @@ class Playground {
                 if (matrix[i][j] == matrix[i + 1][j - 1] &&
                     matrix[i + 1][j - 1] == matrix[i + 2][j - 2] &&
                     matrix[i + 2][j - 2] == matrix[i + 3][j - 3] &&
-                    (matrix[i][j] == '?'|| matrix[i][j] == '#')) {
+                    matrix[i][j] != '0') {
                     return true
                 }
             }

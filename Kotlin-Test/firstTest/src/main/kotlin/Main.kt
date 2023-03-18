@@ -17,19 +17,22 @@ fun playerDropsPiece(player: Char) {
         done = true
     }
 }
-fun initalisePlayer(): Char {
-    println("Gib ein Zeichen für deinen Spieler ein!")
-    val player = readLine()?.length==1
-    return player.toString()[0]
+fun initPlayer(): Char {
+    println("Gib ein Zeichen fur deinen Spieler ein!")
+    var input = readLine()
+    while (input == null) {
+        input = readLine()
+    }
+    return input[0]
 }
 
 fun main() {
-    val p1 = initalisePlayer()
-    val p2 = initalisePlayer()
-
+    val p1 = initPlayer()
+    val p2 = initPlayer()
     var count = 0
 
     pg.show()
+
     while (!done) {
         if (count % 2 == 0) {
             playerDropsPiece(p1)
@@ -38,4 +41,5 @@ fun main() {
         }
         count++
     }
+
 }
